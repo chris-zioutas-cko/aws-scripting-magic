@@ -1,0 +1,37 @@
+{
+    "family": "ppro-external-api-dev",
+    "networkMode": "bridge",
+    "containerDefinitions": [{
+        "name": "ppro-external-api",
+        "image": "679045690091.dkr.ecr.eu-west-1.amazonaws.com/ckotech/ppro-external-api:0.1.0-unstable0010",
+        "environment": [{
+                "name": "ASPNETCORE_URLS",
+                "value": "http://*:5000/"
+            },
+            {
+                "name": "PPRO_PathBase",
+                "value": "/ppro"
+            },
+            {
+                "name": "PPRO_Serilog:WriteTo:1:Args:apiKey",
+                "value": ""
+            },
+            {
+                "name": "PPRO_Serilog:WriteTo:1:Args:serverUrl",
+                "value": "http://seq.ckotech.co"
+            },
+            {
+                "name": "PPRO_Serilog:WriteTo:0:Args:restrictedToMinimumLevel",
+                "value": "Information"
+            }
+        ],
+        "cpu": 0,
+        "portMappings": [{
+            "hostPort": 0,
+            "containerPort": 5000,
+            "protocol": "tcp"
+        }],
+        "memory": 300,
+        "essential": true
+    }]
+}

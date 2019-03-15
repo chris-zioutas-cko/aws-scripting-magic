@@ -1,0 +1,16 @@
+{
+  "name": "script-magic",
+  "version": "1.0.0",
+  "description": "script magic for apm team deployments",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chris Zioutas",
+  "license": "ISC",
+  "dependencies": {
+    "convert-array-to-csv": "^1.0.5",
+    "json2csv": "^4.3.5",
+    "winston": "^3.2.1"
+  }
+}
