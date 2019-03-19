@@ -3,6 +3,8 @@
 const fs = require('fs')
 let common = require('../lib/common.js');
 const logger = require('../lib/logger.js');
+const constants = require('../lib/constants.js');
+let inputRequire = require("../lib/inputRequire.js");
 
 const {
     convertArrayToCSV
@@ -20,36 +22,19 @@ const purpose = "APM Integration";
 const eol = "N/A";
 const additionalInfo = "Service needs to be able to connect to ach-dev Aurora RDS instance";
 
-let clustersInternal = {
-    "dev": "apm-internal-dev",
-    "qa": "gateway-internal-qa",
-    "sandbox": "gateway-internal-sandbox",
-    "prod": "gateway-internal-prod"
-}
-
-let clustersExternal = {
-    "dev": "apm-external-dev",
-    "qa": "gateway-external-qa",
-    "sandbox": "gateway-external-sandbox",
-    "prod": "gateway-external-prod"
-}
-
 let header = ["Owner", "Department", "Cluster name", "AWS service", "Service name", "Task Definition", "Repos", "Number of tasks", "Application type", "Healthcheck endpoint", "Pathbase", "Database Access", "Product/Service", "Category", "Sub-category", "Purpose", "Provision start date", "Proposed end of life date", "Additional Information"];
-let owner = "Daniel Münch";
-let product = "ppro";
+
+let owner = inputRequire.value('owner', true, "Daniel Münch");
+let product = inputRequire.value('product', true);
+
 
 let table = [];
 
-// let ieArray = ["internal-api", "external-api"];
-let ieArray = ["external-api"];
-// let envArray = ["dev", "qa", "sandbox", "prod"];
-let envArray = ["prod"];
-
-for (var ie in ieArray) {
+for (var ie in constants.ieArray) {
 
     let _ie = ieArray[ie];
 
-    for (var env in envArray) {
+    for (var env in constants.envArray) {
 
         let _env = envArray[env];
 
@@ -64,9 +49,9 @@ for (var ie in ieArray) {
 
         let clusterName = "";
         if (_ie.indexOf("internal") > -1) {
-            clusterName = clustersInternal[_env];
+            clusterName = constants.clustersInternal[_env];
         } else if (_ie.indexOf("external") > -1) {
-            clusterName = clustersExternal[_env];
+            clusterName = constants.clustersExternal[_env];
         } else {
             logger.warn("Unkonwn cluster, must be internal or external");
         }

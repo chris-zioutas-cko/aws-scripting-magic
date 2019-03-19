@@ -11,6 +11,8 @@
   "dependencies": {
     "convert-array-to-csv": "^1.0.5",
     "json2csv": "^4.3.5",
+    "minimist": "^1.2.0",
+    "underscore": "^1.9.1",
     "winston": "^3.2.1"
   }
 }
