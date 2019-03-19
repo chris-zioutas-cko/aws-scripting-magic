@@ -9,6 +9,7 @@
   "author": "Chris Zioutas",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.0.1",
     "convert-array-to-csv": "^1.0.5",
     "json2csv": "^4.3.5",
     "minimist": "^1.2.0",
